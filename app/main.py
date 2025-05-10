@@ -12,6 +12,11 @@ class Item(BaseModel):
 
 items = []
 
+@app.get("/")
+def read_root():
+    return {"message": "Bienvenue sur l'API Items avec FastAPI 🚀"}
+
+
 @app.get("/items", response_model=List[Item])
 def list_items():
     return items
