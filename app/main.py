@@ -4,8 +4,8 @@ from app.models import Item, User
 app = FastAPI()
 
 
-items = []
-users = []
+items = [{"id": 1, "name": "Item 1", "price": 10.0, "in_stock": True}]
+users = [{"id": 1, "name": "Alice"}]
 
 # ---------------------
 # Endpoints Items
