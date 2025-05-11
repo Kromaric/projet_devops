@@ -10,8 +10,8 @@ items = [
     Item(id=2, name="Cahier", price=3.0, in_stock=False),
 ]
 users = [
-    User(id=1, name="Romaric", email="romaricyt11@gmail.com"),
-    User(id=2, name="Bob", email="bob@example.com"),
+    User(id=1, username="Romaric", email="romaricyt11@gmail.com"),
+    User(id=2, username="Bob", email="bob@example.com"),
 ]
 # ---------------------
 # Endpoints Items
