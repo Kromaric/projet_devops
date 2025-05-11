@@ -1,16 +1,16 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from typing import List
-
+from app.models import Item, User
 app = FastAPI()
 
-class Item(BaseModel):
-    id: int
-    name: str
-    price: float
-    in_stock: bool
 
 items = []
+users = []
+
+# ---------------------
+# Endpoints Items
+# ---------------------
+
 
 @app.get("/")
 def read_root():
@@ -21,6 +21,7 @@ def read_root():
 def list_items():
     return items
 
+
 @app.get("/items/{item_id}", response_model=Item)
 def get_item(item_id: int):
     for item in items:
@@ -28,10 +29,12 @@ def get_item(item_id: int):
             return item
     raise HTTPException(status_code=404, detail="Item not found")
 
+
 @app.post("/items", response_model=Item)
 def create_item(item: Item):
     items.append(item)
     return item
+
 
 @app.put("/items/{item_id}", response_model=Item)
 def update_item(item_id: int, updated_item: Item):
@@ -41,6 +44,7 @@ def update_item(item_id: int, updated_item: Item):
             return updated_item
     raise HTTPException(status_code=404, detail="Item not found")
 
+
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
     for i, item in enumerate(items):
@@ -48,3 +52,43 @@ def delete_item(item_id: int):
             del items[i]
             return {"message": "Item deleted"}
     raise HTTPException(status_code=404, detail="Item not found")
+# ---------------------
+# Endpoints Users
+# ---------------------
+
+
+@app.get("/users", response_model=List[User])
+def list_users():
+    return users
+
+
+@app.get("/users/{user_id}", response_model=User)
+def get_user(user_id: int):
+    for user in users:
+        if user.id == user_id:
+            return user
+    raise HTTPException(status_code=404, detail="User not found")
+
+
+@app.post("/users", response_model=User)
+def create_user(user: User):
+    users.append(user)
+    return user
+
+
+@app.put("/users/{user_id}", response_model=User)
+def update_user(user_id: int, updated_user: User):
+    for i, existing_user in enumerate(users):
+        if existing_user.id == user_id:
+            users[i] = updated_user
+            return updated_user
+    raise HTTPException(status_code=404, detail="User not found")
+
+
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int):
+    for i, user in enumerate(users):
+        if user.id == user_id:
+            del users[i]
+            return {"message": "User deleted"}
+    raise HTTPException(status_code=404, detail="User not found")

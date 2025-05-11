@@ -3,6 +3,14 @@ from app.main import app
 
 client = TestClient(app)
 
+
+def test_read_root():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {
+        "message": "Bienvenue sur l'API Items & Users avec FastAPI 🚀"}
+
+
 def test_create_item():
     response = client.post("/items", json={
         "id": 1,
@@ -13,15 +21,18 @@ def test_create_item():
     assert response.status_code == 200
     assert response.json()["name"] == "Test Item"
 
+
 def test_get_item():
     response = client.get("/items/1")
     assert response.status_code == 200
     assert response.json()["id"] == 1
 
+
 def test_list_items():
     response = client.get("/items")
     assert response.status_code == 200
     assert isinstance(response.json(), list)
+
 
 def test_update_item():
     response = client.put("/items/1", json={
@@ -32,6 +43,7 @@ def test_update_item():
     })
     assert response.status_code == 200
     assert response.json()["name"] == "Updated Item"
+
 
 def test_delete_item():
     response = client.delete("/items/1")
