@@ -25,7 +25,7 @@ def list_items():
 @app.get("/items/{item_id}", response_model=Item)
 def get_item(item_id: int):
     for item in items:
-        if item.id == item_id:
+        if item["id"] == item_id:
             return item
     raise HTTPException(status_code=404, detail="Item not found")
 
@@ -39,7 +39,7 @@ def create_item(item: Item):
 @app.put("/items/{item_id}", response_model=Item)
 def update_item(item_id: int, updated_item: Item):
     for i, existing_item in enumerate(items):
-        if existing_item.id == item_id:
+        if existing_item["id"] == item_id:
             items[i] = updated_item
             return updated_item
     raise HTTPException(status_code=404, detail="Item not found")
@@ -48,7 +48,7 @@ def update_item(item_id: int, updated_item: Item):
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int):
     for i, item in enumerate(items):
-        if item.id == item_id:
+        if item["id"] == item_id:
             del items[i]
             return {"message": "Item deleted"}
     raise HTTPException(status_code=404, detail="Item not found")
@@ -65,7 +65,7 @@ def list_users():
 @app.get("/users/{user_id}", response_model=User)
 def get_user(user_id: int):
     for user in users:
-        if user.id == user_id:
+        if user["id"] == user_id:
             return user
     raise HTTPException(status_code=404, detail="User not found")
 
@@ -79,7 +79,7 @@ def create_user(user: User):
 @app.put("/users/{user_id}", response_model=User)
 def update_user(user_id: int, updated_user: User):
     for i, existing_user in enumerate(users):
-        if existing_user.id == user_id:
+        if existing_user["id"] == user_id:
             users[i] = updated_user
             return updated_user
     raise HTTPException(status_code=404, detail="User not found")
@@ -88,7 +88,7 @@ def update_user(user_id: int, updated_user: User):
 @app.delete("/users/{user_id}")
 def delete_user(user_id: int):
     for i, user in enumerate(users):
-        if user.id == user_id:
+        if user["id"] == user_id:
             del users[i]
             return {"message": "User deleted"}
     raise HTTPException(status_code=404, detail="User not found")
