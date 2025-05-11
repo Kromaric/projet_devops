@@ -1,9 +1,6 @@
-from app.models import Item
 from fastapi import FastAPI, HTTPException
 from typing import List
 from app.models import Item, User
-app = FastAPI()
-
 
 app = FastAPI()
 
@@ -13,7 +10,7 @@ items = [
     Item(id=2, name="Cahier", price=3.0, in_stock=False),
 ]
 users = [
-    User(id=1, name="Alice", email="alice@example.com"),
+    User(id=1, name="Romaric", email="romaricyt11@gmail.com"),
     User(id=2, name="Bob", email="bob@example.com"),
 ]
 # ---------------------
