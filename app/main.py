@@ -1,11 +1,9 @@
+from app.models import Item
 from fastapi import FastAPI, HTTPException
 from typing import List
 from app.models import Item, User
 app = FastAPI()
 
-
-from fastapi import FastAPI, HTTPException
-from app.models import Item
 
 app = FastAPI()
 
