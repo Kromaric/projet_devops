@@ -8,7 +8,7 @@ def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {
-        "message": "Bienvenue sur l'API Items & Users avec FastAPI 🚀"}
+        "message": "Bienvenue sur l'API Items avec FastAPI 🚀"}
 
 
 def test_create_item():
