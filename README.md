@@ -121,7 +121,7 @@ https://projet-devops-bevb.onrender.com
 ![alt text](image.png)
 
 Avec la documentation interactive sur :
-https://projet-devops-bevb.onrender.com
+https://projet-devops-bevb.onrender.com/docs
 ![alt text](image-1.png)
 
 ## 📚 Technologies
